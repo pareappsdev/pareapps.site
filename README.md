@@ -3,7 +3,9 @@
 The PareApps website: a home page for every app, a page per app, support and
 the privacy policy. Plain HTML and CSS — no build step.
 
-Hosted on Cloudflare Pages: each push to `main` publishes the site.
+Hosted on GitHub Pages from the `main` branch: each push publishes the site.
+`CNAME` names the custom domain; `.nojekyll` serves the files as they are.
+`home/`, `my-day/` and `privacy-policy/` redirect old or short links.
 
 - `index.html` — home
 - `myday/`, `weatherpare/`, `savepare/` — app pages
