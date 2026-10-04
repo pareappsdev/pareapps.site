@@ -1,6 +1,6 @@
 # pareapps.com
 
-The PareApps website: a home page for every app, a page per app, support and
+The Pare Apps website: a home page for every app, a page per app, support and
 the privacy policy. Plain HTML and CSS — no build step.
 
 Hosted on GitHub Pages from the `main` branch: each push publishes the site.
