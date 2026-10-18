@@ -6,7 +6,7 @@ a privacy policy per app. Plain HTML and CSS — no build step.
 Hosted on GitHub Pages from the `main` branch: each push publishes the site.
 
 - `index.html` — home
-- `myday/`, `weatherpare/`, `savepare/` — app pages, each with a `privacy/` policy
+- `myday/` — My Day's page, with its `privacy/` policy
 - `privacy/` — lists every app's policy
 - `support/` — contact and FAQ
 - `assets/css/site.css` — every page's styles

@@ -10,17 +10,18 @@ How to work on **pareapps.com**, the Pare Apps website: a home page for every ap
 
 ## Rules for the content
 
+- **There is no company logo or icon yet.** The header shows "Pare Apps" as text, the site has no favicon, and My Day's pages use its app icon as theirs. Don't reuse an app's icon as the company's.
 - **The company is always "Pare Apps"** (two words) in visible text: titles, headings, copy, the copyright line and legal pages. **Never use a personal name anywhere on the site.** The domain and URLs stay `pareapps.com`.
 - Contact address: **developer@pareapps.com**.
 - **Don't publish prices.** Pricing lives in the App Store.
-- **Don't claim features an app doesn't ship.** Check the app's code first. For example, My Day has an Apple Watch folder, but no watch target that builds, so the site doesn't mention a Watch app.
+- **Don't claim features an app doesn't ship.** Check the app's code first. For example, My Day's Watch app only went on the site once its watch target built and shipped inside the iPhone app.
 
 ## Layout
 
 | Path | What it is |
 |---|---|
 | `index.html` | Home: a card for each app |
-| `myday/`, `weatherpare/`, `savepare/` | One page per app |
+| `myday/` | One page per app (only My Day for now) |
 | `<app>/privacy/` | That app's privacy policy |
 | `privacy/` | Lists every app's policy (keeps the old `/privacy/` link working) |
 | `support/` | Contact and FAQ |
@@ -39,7 +40,7 @@ How to work on **pareapps.com**, the Pare Apps website: a home page for every ap
 ## Common changes
 
 ### An app reaches the App Store
-On the home page card and on the app's page, replace the "Coming soon…" or "Coming back soon…" badge with a button:
+On the home page card and on the app's page, replace the "Coming soon…" badge with a button:
 ```html
 <a class="btn light" href="https://apps.apple.com/…">Download on the App Store</a>
 ```
@@ -47,14 +48,14 @@ On the home page card and on the app's page, replace the "Coming soon…" or "Co
 - `myday/index.html` has a comment marking the spot, and its closing section ("coming soon") needs the button too.
 - Current status:
   - **My Day:** coming soon.
-  - **WeatherPare and SavePare:** off the App Store, "coming back". Their old links (ids 6444024663 and 6444390267) are dead.
+  - **WeatherPare and SavePare** were taken off the site on 2026-10-17 (they are off the App Store). Their pages are in git history if they come back.
 
 ### Adding a new app
-1. Make `<app>/index.html` from an existing app page: `myday/` for a full feature page, `weatherpare/` for a short one.
+1. Make `<app>/index.html` from `myday/`. The home page's "More coming soon" card makes way for, or sits after, the new app's card.
 2. Add `<app>/privacy/index.html`, written from what that app actually collects. Check its code: frameworks such as Firebase and RevenueCat, iCloud, and the system permissions it asks for.
 3. Add a card to `index.html`, a link in **every** page's header nav, and a line in `privacy/index.html`.
 4. Add both new URLs to `sitemap.xml`.
-5. Put its icon (512px) and screenshots (about 786px wide) in `assets/img/`.
+5. Put its icon (512px) and screenshots (about 786px wide for phones, 1600px for iPad) in `assets/img/`.
 
 ### Changing a privacy policy
 - Edit `<app>/privacy/index.html` and change its "Last updated" date.
@@ -62,9 +63,8 @@ On the home page card and on the app's page, replace the "Coming soon…" or "Co
 - The app links to `https://pareapps.com/myday/privacy/` from its paywall (`ProPaywallViewController.privacyURL`) and from Settings → About. **Don't move that URL**, or those links break.
 
 ### Screenshots
-- **My Day's** screenshots are mockups with made-up data, drawn from HTML in the iOS repo: `OneApp/Marketing/pareapps-myday/`. Edit `mockups/*.html` there, run `./render.sh` (needs Google Chrome), then copy the PNGs from `screenshots/` into `assets/img/myday/`.
-- Shrink them to web size before committing: `sips --resampleWidth 786 file.png` for phone screens, and 1600px wide for `00-hero.png`.
-- **WeatherPare and SavePare** screenshots came from the old Wix site.
+- **My Day's** screenshots are real, taken from the iOS Simulator in demo mode. iPhone shots are in `assets/img/myday/iphone/` (786px wide), iPad shots in `assets/img/myday/ipad/` (1600px wide), all JPEG at quality 85.
+- How to retake them is in the iOS repo: `Marketing/pareapps-myday/sim/README.md` (a showcase day for demo mode, photos dated to that day, and favourites seeded into the app group).
 
 ## Checking before a push
 - **Preview:** run `python3 -m http.server 8787` in this folder and open http://localhost:8787. Links like `/myday/` only work from the site root, so don't open the files directly.
