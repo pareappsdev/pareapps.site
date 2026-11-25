@@ -47,7 +47,7 @@ On the home page card and on the app's page, replace the "Coming soon…" badge 
 - Use `btn light` on the purple hero, and `btn` on white.
 - `myday/index.html` has a comment marking the spot, and its closing section ("coming soon") needs the button too.
 - Current status:
-  - **My Day:** coming soon.
+  - **My Day:** on Google Play (`com.pareapps.myday`) since November 2026, linked from the home card, the hero, the Android section and the closing section; coming soon to the App Store.
   - **WeatherPare and SavePare** were taken off the site on 2026-10-17 (they are off the App Store). Their pages are in git history if they come back.
 
 ### Adding a new app
