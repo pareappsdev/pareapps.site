@@ -21,14 +21,14 @@ How to work on **pareapps.com**, the Pare Apps website: a home page for every ap
 | Path | What it is |
 |---|---|
 | `index.html` | Home: a card for each app |
-| `myday/` | One page per app (only My Day for now) |
+| `myday/`, `phonepare/` | One page per app |
 | `<app>/privacy/` | That app's privacy policy |
 | `privacy/` | Lists every app's policy (keeps the old `/privacy/` link working) |
 | `support/` | Contact and FAQ |
-| `home/`, `my-day/`, `privacy-policy/` | Redirect pages for old or short links (GitHub Pages ignores `_redirects` files) |
+| `home/`, `my-day/`, `privacy-policy/`, `phonepare-privacy/` | Redirect pages for old or short links (GitHub Pages ignores `_redirects` files) |
 | `404.html` | Not-found page |
 | `assets/css/site.css` | Every page's styles: colours, phone frames and section layouts |
-| `assets/img/` | Icons and screenshots; My Day's are in `assets/img/myday/` |
+| `assets/img/` | Icons and screenshots, one folder per app (`assets/img/myday/`, `assets/img/phonepare/`) |
 | `sitemap.xml`, `robots.txt` | For search engines |
 | `CNAME` | The custom domain. **Don't delete it**, or GitHub drops pareapps.com |
 | `.nojekyll` | Tells GitHub to serve files as they are |
@@ -48,6 +48,7 @@ On the home page card and on the app's page, replace the "Coming soon…" badge 
 - `myday/index.html` has a comment marking the spot, and its closing section ("coming soon") needs the button too.
 - Current status:
   - **My Day:** on Google Play (`com.pareapps.myday`) since November 2026, linked from the home card, the hero, the Android section and the closing section; coming soon to the App Store.
+  - **PhonePare:** coming soon to both the App Store and Google Play; added to the site on 2026-11-25. Its page, the home card and the closing section need store buttons at launch (`phonepare/index.html` has a comment marking the spot).
   - **WeatherPare and SavePare** were taken off the site on 2026-10-17 (they are off the App Store). Their pages are in git history if they come back.
 
 ### Adding a new app
@@ -61,6 +62,12 @@ On the home page card and on the app's page, replace the "Coming soon…" badge 
 - Edit `<app>/privacy/index.html` and change its "Last updated" date.
 - My Day's policy must match the iOS app. If the app adds a framework that collects data, or a new permission, update the policy in the same change.
 - The app links to `https://pareapps.com/myday/privacy/` from its paywall (`ProPaywallViewController.privacyURL`) and from Settings → About. **Don't move that URL**, or those links break.
+
+### PhonePare
+- Its pages use the browns of its app icon: `.app-hero.phonepare` and `.app-card.featured.phonepare` in `site.css`.
+- **Its privacy policy must match the apps.** PhonePare for iPhone and Android link to `https://pareapps.com/phonepare/privacy/` from Settings (`SettingsView.privacyPolicyUrl` on iOS, `PRIVACY_POLICY_URL` in `SettingsScreen.kt` on Android). **Don't move that URL.** It covers Firestore and Storage, App Check, Firebase Analytics (including search terms), YouTube thumbnails, and store and affiliate links. If the apps add an SDK or a permission, update the policy in the same change.
+- Its page notes that some store links are affiliate links. Keep that while the apps use affiliate links.
+- Screenshots are from the iPhone 18 Pro simulator against the production data, with the status bar set to 9:41 (`xcrun simctl status_bar … override`). Don't use shots that show YouTube thumbnails: they're other creators' images.
 
 ### Screenshots
 - **My Day's** screenshots are real, taken from the iOS Simulator in demo mode. iPhone shots are in `assets/img/myday/iphone/` (786px wide), iPad shots in `assets/img/myday/ipad/` (1600px wide), all JPEG at quality 85.
